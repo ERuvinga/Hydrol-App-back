@@ -2,9 +2,7 @@
 const jwt = require("jsonwebtoken");
 
 // modelsusers 
-const modelOfStudents = require("../../Models/Users/Student"); // import model of students user
-const modelTeachers = require("../../Models/Users/Teachers"); // import model of Teachers
-const modelDirectors = require("../../Models/Users/Direction"); // import model of Teachers
+const modelOfUsers = require("../../Models/Users"); // import model of students user
 
 // controller Check Auth user
 exports.CheckAuthUser =(req, res)=>{
@@ -14,23 +12,9 @@ exports.CheckAuthUser =(req, res)=>{
     try{
         // verify validity token 
         const DataOfToken = jwt.verify(token, process.env.TOKEN_SIGN);
-        let modelUser;
-        
-        // check modelUser
-        switch(DataOfToken.modelUser){
-            case "modelDirectors":
-                modelUser = modelDirectors;
-                break;
-            case "modelTeachers":
-                modelUser = modelTeachers;
-                break;
-            case "modelOfStudents":
-                modelUser = modelOfStudents;
-                break;
-        }
 
         // search user in dataBase
-        modelUser.findOne({_id:DataOfToken.idUser})
+        modelOfUsers.findOne({_id:DataOfToken.idUser})
         .then(userFund =>{
             res.status(200).json({msg:"Token valid", userFund});
         })

@@ -30,7 +30,6 @@ exports.login = (req, res) => {
                             const Token = jwt.sign({
                                     idUser:userFund._id,
                                     mail:userFund.email,
-                                    modelOfUsers:"modelOfStudents"
                                 },process.env.TOKEN_SIGN);
                                 res.status(200).json({msg:"Utilisateur trouvé", Token, DataUser:userFund, typeAccount:userFund.typeAccount});
                             }
@@ -107,7 +106,6 @@ exports.Activation_account = (req, res) => {
 //Register New Student
 
 exports.registerNewUser = (req, res) =>{
-
     const DatasOfForm = req.body;
     const formData = {
         name:"Elie Ruvinga",

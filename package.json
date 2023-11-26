@@ -1,0 +1,20 @@
+{
+  "name": "shule_App_back",
+  "version": "1.0.0",
+  "description": "developpement d'une Api pour la gestion des données scolaires",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": " nodemon server"
+  },
+  "author": "Elie Ruvinga",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3",
+    "nodemon": "^2.0.20",
+    "jsonwebtoken":"^9.0.2"
+  }
+}

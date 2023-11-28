@@ -36,12 +36,22 @@ const UsersShema = mongoose.Schema({
     //Coordo Datas
     email:{
         type:String,
+        required:true,
+        unique:true,
         default:"-"
     },
+    
     tel:{
         type:String,
+        required:true,
+        unique:true,
         default:"-"
     },
+    
+    idOfAdmin:{
+        type:String,
+        default:""
+    }
 });
 
 module.exports = mongoose.model("User", UsersShema);

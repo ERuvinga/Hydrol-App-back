@@ -3,12 +3,12 @@
 const modelOfUsers = require("../Models/Users"); // import model of students user
 
 // controller Check Auth user
-exports.getAllUsersBynode =(req, res)=>{
-    
+exports.deleteUser =(req, res)=>{
         //search user in dataBase
-        modelOfUsers.find()
-        .then(userFund =>{
-            console.log(userFund);
+        modelOfUsers.deleteOne({_id:req.params.id})
+        .then((userFund) =>{
+            console.log("user deleted");
+            res.status(200).json("user Deleted");
 
         })
         .catch(error =>{
@@ -29,4 +29,26 @@ exports.getAllUsers =(req, res)=>{
             console.log(error);
             res.status(500).json({error});
         })        
+};
+
+
+exports.NewUser =(req, res)=>{
+    const formDatas ={
+        email:req.body.email,
+        tel:req.body.tel,
+        name:`${req.body.SecondeName} ${req.body.name}`,
+        idOfAdmin:req.Autorization.userId,
+    }
+    console.log(formDatas);
+
+    //create new user in dataBase
+    const user = new modelOfUsers(formDatas)
+    user.save()
+    .then(() =>{
+            res.status(200).json({msg:"Creation d'utilisateur reussit"});
+    })
+    .catch(error =>{
+        console.log(error);
+        res.status(500).json({msg:"cet adresse mail ou cet numero existe deja dans la base de donnee, veuillez rensignez un autre!"});
+    })        
 };

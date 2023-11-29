@@ -20,9 +20,9 @@ exports.deleteUser =(req, res)=>{
 exports.getAllUsers =(req, res)=>{
 
         //search AllStudents in dataBase
-        modelOfUsers.find()
+        modelOfUsers.find({idOfAdmin: req.Autorization.userId})
         .then(userFund =>{
-                res.status(200).json({msg:"Utalisateurs All", AllUsers:userFund});
+                res.status(200).json({msg:"Tout les utilisateurs du reseau", AllUsers:userFund});
             
         })
         .catch(error =>{
@@ -39,8 +39,6 @@ exports.NewUser =(req, res)=>{
         name:`${req.body.SecondeName} ${req.body.name}`,
         idOfAdmin:req.Autorization.userId,
     }
-    console.log(formDatas);
-
     //create new user in dataBase
     const user = new modelOfUsers(formDatas)
     user.save()

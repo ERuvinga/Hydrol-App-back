@@ -17,7 +17,7 @@ exports.CheckAutorizationUser =(req, res, next)=>{
         modelUser.findOne({_id:DataOfToken.idUser})
         .then(userFund =>{
                 req.Autorization ={
-                    userId : userFund._id,
+                    userId : userFund._id.toString(),
                     typeAccount:userFund.typeAccount,
                     AdminId:userFund.idOfAdmin,
                 }

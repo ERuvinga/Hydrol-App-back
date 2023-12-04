@@ -51,6 +51,12 @@ const UsersShema = mongoose.Schema({
     idOfAdmin:{
         type:String,
         default:""
+    },
+
+    idCompteur:{
+        type:Number,
+        required: true,
+        unique:true
     }
 });
 
